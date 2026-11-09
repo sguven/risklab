@@ -50,7 +50,7 @@ The site can run without the Python backend:
 ```bash
 python ../backend/scripts/export_static.py   # content snapshot + parity fixtures → lib/data/
 npm run parity                               # TypeScript engine vs Python reference
-NEXT_PUBLIC_STATIC=1 npm run build           # static export → out/ (basePath /market-risk-toolkit)
+NEXT_PUBLIC_STATIC=1 npm run build           # static export → out/ (basePath /risklab)
 ```
 
 In static mode `lib/api.ts` resolves every endpoint from `lib/data/snapshot.json` and runs calculations

@@ -24,12 +24,6 @@ backend/
   content/            learning topics (YAML) and regulatory provisions (YAML), linted at startup
   tests/              pytest: engine (unit, boundary, property) + API + content lint
 frontend/             Next.js 15 · TypeScript · Tailwind — Dashboard, Learn, Regulatory Library
-black_scholes_lab/    Black-Scholes Laboratory: option pricing, exotics, FRTB-SA — MkDocs sub-site (package bslab)
-xva_lab/              Counterparty Exposure & XVA Laboratory: exposure simulation, netting/collateral,
-                      CVA/DVA/FVA/MVA, wrong-way risk, SA-CCR/IMM/BA-CVA — MkDocs sub-site (package xvalab)
-vol_corr_lab/         Volatility & Correlation Risk Laboratory: GARCH, vol surfaces (SVI, local/stochastic vol),
-                      vega risk, variance swaps, correlation estimation/stress/products, FRTB vega and
-                      correlation scenarios — MkDocs sub-site (package vclab)
 docs/                 ARCHITECTURE.md, API.md, PHASE1_SUMMARY.md
 market_risk/          compatibility shim for the original toolkit import path
 examples/demo.py      original toolkit demo (still runs)
@@ -54,24 +48,16 @@ Or `make install && make api` / `make web`, or `docker compose up` (api + web).
 
 ## Educational laboratories
 
-Three self-contained course modules live alongside the platform and are published as sub-sites of the
-GitHub Pages deployment:
+The standalone course modules (Black-Scholes Lab, XVA Lab, Volatility & Correlation Lab) live in their
+own repository: [sguven/market-risk-toolkit](https://github.com/sguven/market-risk-toolkit) —
+read online at https://sguven.github.io/market-risk-toolkit/.
 
-| Module | Read online | Topics |
-|--------|-------------|--------|
-| `black_scholes_lab/` | https://sguven.github.io/market-risk-toolkit/black-scholes-lab/ | Black-Scholes-Merton, Greeks and hedging, exotics, Monte Carlo, FRTB-SA, VaR/ES, SR 11-7 |
-| `xva_lab/` | https://sguven.github.io/market-risk-toolkit/xva-lab/ | Counterparty exposure simulation (Hull-White + FX), netting and CSA collateral, CVA / DVA / FVA / MVA / KVA, wrong-way risk, SA-CCR, IMM, BA-CVA, margin rules |
-| `vol_corr_lab/` | https://sguven.github.io/market-risk-toolkit/vol-corr-lab/ | Volatility estimation (EWMA, GARCH), implied vol surfaces (SVI, arbitrage, local vol, Heston), vega risk (buckets, scenarios, P&L explain, PCA), variance and volatility swaps, correlation estimation, stress, repair and products, FRTB vega / correlation scenarios / RRAO / NMRF |
-
-Each has its own `README.md`, `examples/` that regenerate the figures, a pytest suite and a `mkdocs.yml`.
+**Live site:** https://sguven.github.io/risklab/
 
 ## Test
 
 ```bash
 python -m pytest backend/tests -q        # 51 tests: engine, API, content lint
-python -m pytest black_scholes_lab -q    # 36 tests: option pricing reference values, FRTB mechanics
-python -m pytest xva_lab -q              # 36 tests: martingale checks, exposure identities, XVA, BCBS SA-CCR example
-python -m pytest vol_corr_lab -q         # 50 tests: arbitrage-free surface, local-vol MC repricing, GARCH, vega additivity, correlation, FRTB
 cd frontend && npm run build             # type-checks and builds the UI
 PYTHONPATH=. python examples/demo.py     # original toolkit demo via the shim
 ```
